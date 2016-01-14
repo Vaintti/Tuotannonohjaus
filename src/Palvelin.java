@@ -1,5 +1,7 @@
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 public class Palvelin {
 	public static void main(String[] args){
@@ -16,14 +18,15 @@ public class Palvelin {
 		Pumppu[] g = {new Pumppu(), new Pumppu()};
 		try{
 			// Luodaan osista laitos
-			if(System.getSecurityManager()==null){
+			/**if(System.getSecurityManager()==null){
 				System.setSecurityManager(new RMISecurityManager());
-			}
+			}**/
 			Laitos laitos = new Laitos(a, b, c, d, e, f, g);
-			Naming.rebind("Laitos", laitos);
+			Registry registry = LocateRegistry.createRegistry(2020);
+			Naming.rebind("//localhost:2020/Laitos", laitos);
+			System.out.println("Serveri käynnistetty.");
 		}catch(Exception expe){
 			System.out.println("Error: "+expe);
 		}
-		
 	}
 }
