@@ -9,7 +9,4 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	public Laitos(Ruuvikuljetin a, Siilo[] siilot, Ruuvikuljetin[] b, Juomakeitin[] j, Pumppu[] p, Kypsytyssäiliö[] ks, Pumppu[] pl) throws RemoteException {
 		
 	}
-	public void lisääKeittäjä(String nimi){
-		juomamestarit.add(new Thread(new JuomamestariPalvelin(nimi)));
-	}
 }
