@@ -5,4 +5,13 @@ public class Juomakeitin {
 	private int tilavuusVesi;
 	private int tilavuusRaakaaine;
 	private int prosessointiaika;
+
+	public boolean VesiTaytto(){
+		
+	}
+
+
+
+
+
 }
