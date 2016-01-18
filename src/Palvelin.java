@@ -10,12 +10,12 @@ public class Palvelin {
 		Siilo[] b = {new Siilo(), new Siilo(), new Siilo(), new Siilo()};
 		Ruuvikuljetin[] c = {new Ruuvikuljetin(false), new Ruuvikuljetin(false)};
 		Juomakeitin[] d = {new Juomakeitin(), new Juomakeitin(), new Juomakeitin()};
-		Pumppu[] e = {new Pumppu(), new Pumppu()};
+		Pumppu[] e = {new Pumppu(false), new Pumppu(false)};
 		Kypsytyssäiliö[] f = new Kypsytyssäiliö[10];
 		for(int i = 0; i < 10; i++){
 			f[i] = new Kypsytyssäiliö();
 		}
-		Pumppu[] g = {new Pumppu(), new Pumppu()};
+		Pumppu[] g = {new Pumppu(true), new Pumppu(true)};
 		try{
 			// Luodaan osista laitos
 			/**if(System.getSecurityManager()==null){

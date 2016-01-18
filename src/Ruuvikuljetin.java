@@ -18,7 +18,7 @@ public class Ruuvikuljetin {
 		}
 		int halutaan = 0;
 		for(Juomakeitin ju : j) {
-			// halutaan += j.getTäyttö();
+			// halutaan += j.getTäyttökatto()-j.getTäyttö();
 		}
 		int siirretään = määrä;
 		if(saatavilla < siirretään) {
@@ -27,5 +27,6 @@ public class Ruuvikuljetin {
 		if(halutaan < siirretään) {
 			siirretään = halutaan;
 		}
+		
 	}
 }
