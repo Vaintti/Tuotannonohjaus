@@ -2,25 +2,30 @@
 public class Siilo {
 	
 	private String raakaaine;
+	private final int TÄYTTÖKATTO;
 	private int täyttöaste;
 	private String käyttäjä;
-	private boolean täyttyy;
-	private boolean tyhjenee;
-	private int täyttökatto;
+	private boolean käytössä;	
 	
 	public Siilo(){
 		raakaaine = "mallas";
 		käyttäjä = null;
 		täyttöaste = 0;
-		täyttyy = false;
-		tyhjenee = false;
-		täyttökatto = 10000;
+		käytössä = false;
+		TÄYTTÖKATTO = 10000;
 	}
-	
+	//Täytön kysely ja asetus
 	public int getTäyttö(){
 		return täyttöaste;
 	}
-	
+	public void setTäyttö(int i){
+		täyttöaste = i;
+	}
+	//Maksimi tilavuuden kysely
+	public int getTäyttökatto(){
+		return TÄYTTÖKATTO;
+	}
+	//käyttäjän asetus, kysely ja poisto
 	public void setKäyttäjä(String k){
 		if(käyttäjä==null){
 			käyttäjä=k;
@@ -32,21 +37,11 @@ public class Siilo {
 	public void poistaKäyttäjä(){
 		käyttäjä=null;
 	}
-	
-	public void täyttö(){
-		if (täyttyy == false && tyhjenee == false){
-			täyttyy = true;	
-			}
+	//käytössä lipun get ja set
+	public void setKäytössä(boolean k){
+		käytössä = k;
 		}
-	public void tyhjennys(){
-		if (täyttyy == false && tyhjenee == false){
-			tyhjenee = true;	
-			}
-		}
-	public void toiminnanLopetus(){
-		tyhjenee = false;
-		täyttyy = false;	
+	public boolean getKäytössä(){
+		return käytössä;
 	}
-	
-	
 }
