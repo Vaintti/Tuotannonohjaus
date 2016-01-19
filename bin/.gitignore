@@ -4,6 +4,7 @@
 /LaitosRajapinta.class
 /Palvelin.class
 /PalvelinImplementaatio.class
+/Prosessointiaika.class
 /Pumppu.class
 /Ruuvikuljetin.class
 /Siilo.class
@@ -12,4 +13,3 @@
 /manifest.mf
 /nbproject/
 /src/
-/Prosessointiaika.class
