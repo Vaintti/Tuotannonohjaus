@@ -54,10 +54,12 @@ public class Ruuvisiirto implements Runnable {
 							}
 							else {
 								if(x.getTäyttö() > y.getRaakaMax()-y.getRaaka()) {
+									x.setTäyttö(x.getTäyttö()-(y.getRaakaMax()-y.getRaaka()));
 									y.setRaaka(y.getRaakaMax());
 								}
 								else {
 									y.setRaaka(y.getRaaka()+x.getTäyttö());
+									x.setTäyttö(0);
 								}
 							}
 						}catch(Exception e) {
