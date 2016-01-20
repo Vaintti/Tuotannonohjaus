@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 
 public class Ruuvikuljetin {
-	// Siirtonopeus 200 kiloa sekunnissa
-	private final int SIIRTONOPEUS = 200;
 	// Onko kuljetin siilojen täyttöön
 	private boolean siilojenTäyttö = false;
 	
