@@ -44,7 +44,7 @@ public class Juomakeitin {
 	public void setRaaka(int r){
 		tilavuusRaakaaine = r;
 	}
-	public int setRaaka(){
+	public int getRaaka(){
 		return tilavuusRaakaaine;
 	}
 	public int getRaakaMax(){
@@ -65,7 +65,10 @@ public class Juomakeitin {
 		return raakakäyttö;
 	}
 // pitää käynnistää uusi thread kun alkaa prosessoida (20 000 millisekuntia)
-
+	public void Käynnistys(){	
+	Prosessointiaika prosessi = new Prosessointiaika();
+	prosessi.run();
+	}
 
 
 
