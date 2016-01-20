@@ -2,21 +2,18 @@
 public class Juomakeitin {
 
 	private String varaaja;
-	private int tilavuusVesi;
-	private final int VESIMAX;
 	private int tilavuusRaakaaine;
 	private final int RAAKAMAX;
-	private int prosessointiaika;
-	private boolean vesikäyttö;
 	private boolean raakakäyttö;
+	private boolean prosessoi;
+	private boolean valmis;
 	
 	public Juomakeitin(){
-		tilavuusVesi = 0;
 		tilavuusRaakaaine = 0;
-		VESIMAX = 2000;
 		RAAKAMAX = 10000;
-		prosessointiaika = 0;
 		varaaja = null;
+		prosessoi = false;
+		valmis = false;
 	}
 	//varaajan asetus, kysely ja reset
 	public void setVaraaja(String v){
@@ -30,16 +27,6 @@ public class Juomakeitin {
 	public void resetVaraaja(){
 		varaaja = null;
 	}
-	//veden asetus ja kysely sekä veden max tilavuuden kysely
-	public void setVesi(int v){
-		tilavuusVesi = v;
-	}
-	public int getVesi(){
-		return tilavuusVesi;
-	}
-	public int getVesiMax(){
-		return VESIMAX;
-	}
 	//raakaaineen asetus ja kysely sekä raaka-aineen max tilavuuden kysely 
 	public void setRaaka(int r){
 		tilavuusRaakaaine = r;
@@ -50,13 +37,6 @@ public class Juomakeitin {
 	public int getRaakaMax(){
 		return RAAKAMAX;
 	}
-	//veden täyttö/tyhjennyslipun (käyttö) asetus ja kysely
-	public void setVesiKäyttö(boolean k){
-		vesikäyttö = k;
-	}
-	public boolean getVesiKäyttö(){
-		return vesikäyttö;
-	}
 	//raaka-aineen täyttö/tyhjennyslipun (käyttö) asetus ja kysely
 	public void setRaakaKäyttö(boolean k){
 		raakakäyttö = k;
@@ -64,10 +44,22 @@ public class Juomakeitin {
 	public boolean getRaakaKäyttö(){
 		return raakakäyttö;
 	}
-// pitää käynnistää uusi thread kun alkaa prosessoida (20 000 millisekuntia)
-	public void Käynnistys(){	
-	Prosessointiaika prosessi = new Prosessointiaika();
-	prosessi.run();
+	// kypsyys lippu get ja set
+	public boolean getValmis(){
+		return valmis;
+	}
+	public void setValmis(boolean v){
+		valmis = v;
+	}
+	
+	//käynnistetään uusi säije prosessoinnin laskemiseksi (kesto 20 sec)
+	public void käynnistys(){
+		prosessoi = true;
+		new Thread(new Prosessointiaika(this));
+	}
+	public void lopetus(){
+		prosessoi = false;
+		valmis = true;
 	}
 
 

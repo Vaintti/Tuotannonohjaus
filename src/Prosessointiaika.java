@@ -1,25 +1,20 @@
 
 public class Prosessointiaika implements Runnable {
 	private final int AIKA;
-	private boolean running;
-	
-	public Prosessointiaika(){
+	private Juomakeitin j;
+	public Prosessointiaika(Juomakeitin ju){
 		AIKA = 20000;
+		this.j = ju;
 	}
 	
 	public void run(){
-		running = true;
 		try {
-		    Thread.sleep(AIKA);                 //1000 milliseconds is one second.
+		    Thread.sleep(AIKA);
+		    j.lopetus();
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
-	}
-	public void sammuta(){
-		running = false;
-	}
-	public boolean Runnig(){
-		return running;
+		
 	}
 
 	//run metodi katso mallia summaajasta(sivu26) ja hajoyhteydestä (rivi 102)
