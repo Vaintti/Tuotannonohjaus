@@ -52,6 +52,9 @@ public class Juomakeitin {
 	public void setValmis(boolean v){
 		valmis = v;
 	}
+	public boolean getProsessoi(){
+		return prosessoi;
+	}
 	
 	//k‰ynnistet‰‰n uusi s‰ije prosessoinnin laskemiseksi (kesto 20 sec)
 	public void k‰ynnistys(){
