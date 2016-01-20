@@ -12,4 +12,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	public void testi(){
 		System.out.println("Onnistunut etäkutsu");
 	}
+	public void juomakeitinKäynnistys(int i){
+		Juomakeitin[i].käynnistys;
+	}
 }
