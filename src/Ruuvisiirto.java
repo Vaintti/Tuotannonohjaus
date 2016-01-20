@@ -2,23 +2,57 @@ import java.util.ArrayList;
 
 public class Ruuvisiirto implements Runnable {
 	// Attribuutit
-	private ArrayList<Siilo> siilot = new ArrayList<Siilo>();
-	private ArrayList<Juomakeitin> juomakeittimet = new ArrayList<Juomakeitin>();
-	private int siirtomäärä;
+	private ArrayList<Siilo> siilot;
+	private ArrayList<Juomakeitin> juomakeittimet;
 	private final int SIIRTONOPEUS = 200;
 	
 	// Konstruktori siilot täyttävälle kuljettimelle
-	public Ruuvisiirto(int m, ArrayList<Siilo> s) {
-		
+	public Ruuvisiirto(ArrayList<Siilo> s) {
+		siilot = s;
 	}
 	
 	// Konstruktori juomakeittimet täyttävälle kuljettimelle
-	public Ruuvisiirto(ArrayList<Siilo> s, int m, ArrayList<Juomakeitin> j) {
-		
+	public Ruuvisiirto(ArrayList<Siilo> s, ArrayList<Juomakeitin> j) {
+		siilot = s;
+		juomakeittimet = j;
 	}
 	
 	public void run() {
-		int siirtoaika = siirtomäärä/SIIRTONOPEUS;
-		// tietojen päivitys tapahtuu 10 kertaa siirron aikana
+		// Jos täytetään siiloja
+		if(juomakeittimet == null) {
+			for(Siilo x : siilot) {
+				int täyttö = x.getTäyttö();
+				int katto = x.getTäyttökatto();
+				while(true) {
+					try {
+						Thread.sleep(100);
+						if(x.getTäyttö()+SIIRTONOPEUS/10 <= katto) {
+							x.setTäyttö(täyttö+SIIRTONOPEUS/10);
+						}
+						else {
+							x.setTäyttö(katto);
+							break;
+						}
+					}catch(Exception e) {
+						System.out.println(e);
+					}
+				}
+			}
+		}
+		// Jos siirretään siiloista juomakeittimiin
+		else {
+			for(Siilo x : siilot) {
+				while(x.getTäyttö()>0) {
+					for(Juomakeitin y : juomakeittimet) {
+						try {
+							Thread.sleep(100);
+							
+						}catch(Exception e) {
+							System.out.println(e);
+						}
+					}
+				}
+			}
+		}
 	}
 }

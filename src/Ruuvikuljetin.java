@@ -29,10 +29,10 @@ public class Ruuvikuljetin {
 		}
 		// Siirtoprosessi
 		if(siilojenTäyttö) {
-			new Thread(new Ruuvisiirto(siirretään, s));
+			new Thread(new Ruuvisiirto(s));
 		}
 		else {
-			new Thread(new Ruuvisiirto(s, siirretään, j));
+			new Thread(new Ruuvisiirto(s, j));
 		}
 	}
 }
