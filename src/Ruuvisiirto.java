@@ -50,7 +50,15 @@ public class Ruuvisiirto implements Runnable {
 							Thread.sleep(100);
 							if(x.getTäyttö() >= SIIRTONOPEUS/10 && y.getRaaka()+SIIRTONOPEUS/10 <= y.getRaakaMax()) {
 								x.setTäyttö(x.getTäyttö()-SIIRTONOPEUS/10);
-								y.setRaaka(y.getTäyttö()+SIIRTONOPEUS/10);
+								y.setRaaka(y.getRaaka()+SIIRTONOPEUS/10);
+							}
+							else {
+								if(x.getTäyttö() > y.getRaakaMax()-y.getRaaka()) {
+									y.setRaaka(y.getRaakaMax());
+								}
+								else {
+									y.setRaaka(y.getRaaka()+x.getTäyttö());
+								}
 							}
 						}catch(Exception e) {
 							System.out.println(e);
