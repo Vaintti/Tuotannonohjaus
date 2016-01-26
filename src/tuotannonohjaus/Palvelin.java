@@ -1,9 +1,6 @@
 package tuotannonohjaus;
-import java.rmi.Naming;
-import java.rmi.RMISecurityManager;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import tuotannonohjaus.*;
+import java.rmi.*;
+import java.rmi.registry.*;
 
 public class Palvelin {
 	public static void main(String[] args){
