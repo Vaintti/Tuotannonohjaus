@@ -34,10 +34,10 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}
 	// K‰ynnist‰‰ keittimet t‰ytt‰v‰n ruuvikuljettimen
 	public void startKeittimienT‰ytin(int kuljetin){
-		
+		System.out.println("Juomakeittimet t‰ytt‰v‰ kuljetin "+kuljetin+" k‰ynnistetty.");
 	}
 	// Varaa sillon
 	public void varaaSiilo(int siilo){
-		
+		System.out.println("Siilo "+siilo+" varattu");
 	}
 }
