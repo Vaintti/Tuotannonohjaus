@@ -24,14 +24,20 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		kypsytyss‰iliˆA =ks;
 		pumppuArray2=pl;
 	}
-	
+	// Testimetodi
 	public void testi(){
 		System.out.println("Onnistunut et‰kutsu");
 	}
+	// K‰ynnist‰‰ juomakeittimen
 	public void juomakeitinK‰ynnistys(int i){
 		juomakeitinArray[i].k‰ynnistys();
 	}
-	public void siilo(int i){
+	// K‰ynnist‰‰ keittimet t‰ytt‰v‰n ruuvikuljettimen
+	public void startKeittimienT‰ytin(int kuljetin){
+		
+	}
+	// Varaa sillon
+	public void varaaSiilo(int siilo){
 		
 	}
 }
