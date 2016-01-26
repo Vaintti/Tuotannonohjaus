@@ -18,7 +18,7 @@ public class Palvelin {
 		try{
 			Laitos laitos = new Laitos(a, b, c, d, e, f, g);
 			Registry registry = LocateRegistry.createRegistry(2020);
-			Naming.rebind("//127.0.0.1:2020/tehdas", laitos);
+			Naming.rebind("//127.0.0.1:2020/laitos", laitos);
 			System.out.println("Serveri käynnistetty.");
 		}catch(Exception expe){
 			System.out.println("Error: "+expe);
