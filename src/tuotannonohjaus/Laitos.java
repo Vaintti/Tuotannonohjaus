@@ -40,4 +40,19 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	public void varaaSiilo(int siilo){
 		System.out.println("Siilo "+siilo+" varattu");
 	}
+	public void varaaKeitin(int keitin) {
+		
+	}
+	public void käynnistäKeitin(int keitin) {
+		
+	}
+	public void käynnistäPumppu(int keitin) {
+		
+	}
+	public void käynnistäPullotusPumppu(int keitin) {
+		
+	}
+	public void varaaSäiliö(int keitin) {
+		
+	}
 }
