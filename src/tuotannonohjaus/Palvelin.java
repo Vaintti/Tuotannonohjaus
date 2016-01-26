@@ -1,3 +1,4 @@
+package tuotannonohjaus;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
