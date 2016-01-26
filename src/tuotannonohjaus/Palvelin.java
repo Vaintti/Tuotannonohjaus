@@ -1,4 +1,4 @@
-
+package tuotannonohjaus;
 import java.rmi.Naming;
 import java.rmi.RMISecurityManager;
 import java.rmi.registry.LocateRegistry;
@@ -19,13 +19,9 @@ public class Palvelin {
 		}
 		Pumppu[] g = {new Pumppu(true), new Pumppu(true)};
 		try{
-			// Luodaan osista laitos
-			/**if(System.getSecurityManager()==null){
-				System.setSecurityManager(new RMISecurityManager());
-			}**/
 			Laitos laitos = new Laitos(a, b, c, d, e, f, g);
 			Registry registry = LocateRegistry.createRegistry(2020);
-			Naming.rebind("//localhost:2020/Laitos", laitos);
+			Naming.rebind("//127.0.0.1:2020/tehdas", laitos);
 			System.out.println("Serveri käynnistetty.");
 		}catch(Exception expe){
 			System.out.println("Error: "+expe);
