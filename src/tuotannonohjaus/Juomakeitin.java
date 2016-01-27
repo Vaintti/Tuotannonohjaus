@@ -56,7 +56,7 @@ public class Juomakeitin {
 		return prosessoi;
 	}
 	
-	//k‰ynnistet‰‰n uusi s‰ije prosessoinnin laskemiseksi (kesto 20 sec)
+	//k‰ynnistet‰‰n uusi s‰ie prosessoinnin laskemiseksi (kesto 20 sec)
 	public void k‰ynnistys(){
 		prosessoi = true;
 		new Thread(new Prosessointiaika(this));

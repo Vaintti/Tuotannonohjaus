@@ -93,15 +93,14 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		juomakeitinArray[i].k‰ynnistys();
 	}
 	// K‰ynnist‰‰ keittimet t‰ytt‰v‰n ruuvikuljettimen
-	public void startKeittimienT‰ytin(int kuljetin){
-		System.out.println("Juomakeittimet t‰ytt‰v‰ kuljetin "+kuljetin+" k‰ynnistetty.");
+	public void startKeittimienT‰ytin(int kuljetin, String[] k‰ytt‰j‰){
+		Siilo[] siilot;
+		int m‰‰r‰;
+		Juomakeitin[] juomakeittimet;
+		ruuviArray[kuljetin].siirr‰(siilot, m‰‰r‰, juomakeittimet);
 	}
-<<<<<<< HEAD
 	// Varaa sillon
 	public void varaaSiilo(int siilo, String[] v){
-=======
-	public void varaaSiilo(int siilo){
->>>>>>> origin/Antti
 		System.out.println("Siilo "+siilo+" varattu");
 		if(siiloArray[siilo].getK‰ytˆss‰() == true){
 			return;
