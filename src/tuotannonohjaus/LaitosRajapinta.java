@@ -12,4 +12,5 @@ public interface LaitosRajapinta extends Remote {
 	public void käynnistäPumppu(int keitin) throws RemoteException;
 	public void käynnistäPullotusPumppu(int keitin) throws RemoteException;
 	public void varaaSäiliö(int keitin) throws RemoteException;
+	public String[] login(String nimi) throws RemoteException;
 }
