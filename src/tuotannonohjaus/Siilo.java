@@ -5,7 +5,7 @@ public class Siilo {
 	private String raakaaine;
 	private final int TÄYTTÖKATTO;
 	private int täyttöaste;
-	private String käyttäjä;
+	private String[] käyttäjä;
 	private boolean käytössä;	
 	
 	public Siilo(){
@@ -27,12 +27,12 @@ public class Siilo {
 		return TÄYTTÖKATTO;
 	}
 	//käyttäjän asetus, kysely ja poisto
-	public void setKäyttäjä(String k){
+	public void setKäyttäjä(String[] k){
 		if(käyttäjä==null){
 			käyttäjä=k;
 		}
 	}
-	public String getKäyttäjä(){
+	public String[] getKäyttäjä(){
 		return käyttäjä;
 	}
 	public void poistaKäyttäjä(){

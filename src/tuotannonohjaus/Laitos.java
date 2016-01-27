@@ -54,11 +54,38 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		System.out.println("Juomakeittimet täyttävä kuljetin "+kuljetin+" käynnistetty.");
 	}
 	// Varaa sillon
-	public void varaaSiilo(int siilo){
+	public void varaaSiilo(int siilo, String[] v){
 		System.out.println("Siilo "+siilo+" varattu");
+		if(siiloArray[siilo].getKäytössä() == true){
+			return;
+		}else{
+			if(siiloArray[siilo].getKäyttäjä() == null){
+				if(siiloArray[siilo].getKäyttäjä() == v){
+					siiloArray[siilo].poistaKäyttäjä();
+				}else{
+					return;
+				}
+			}else{
+				siiloArray[siilo].setKäyttäjä(v);
+			}
+		}
 	}
-	public void varaaKeitin(int keitin) {
-		
+	// Varaa keitin
+	public void varaaKeitin(int keitin, String[] v) {
+		System.out.println("Keitin "+keitin+" varattu");
+		if(juomakeitinArray[keitin].getProsessoi() == true){
+			return;
+		}else{
+			if(juomakeitinArray[keitin].getVaraaja() == null){
+				if(juomakeitinArray[keitin].getVaraaja() == v){
+					juomakeitinArray[keitin].resetVaraaja();
+				}else{
+					return;
+				}
+			}else{
+				juomakeitinArray[keitin].setVaraaja(v);
+			}
+		}
 	}
 	public void käynnistäKeitin(int keitin) {
 		

@@ -2,7 +2,7 @@ package tuotannonohjaus;
 
 public class Juomakeitin {
 
-	private String varaaja;
+	private String[] varaaja;
 	private int tilavuusRaakaaine;
 	private final int RAAKAMAX;
 	private boolean raakakäyttö;
@@ -17,12 +17,12 @@ public class Juomakeitin {
 		valmis = false;
 	}
 	//varaajan asetus, kysely ja reset
-	public void setVaraaja(String v){
+	public void setVaraaja(String[] v){
 		if(varaaja == null){
 			varaaja = v;
 		}
 	}
-	public String getVaraaja(){
+	public String[] getVaraaja(){
 		return varaaja;
 	}
 	public void resetVaraaja(){
