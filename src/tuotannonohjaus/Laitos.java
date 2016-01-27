@@ -50,38 +50,38 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		return this;
 	}
 	// Palauttaa täyttääkö kuljetin siiloa tällä hetkellä
-	public boolean siiloTäyttyy() {
+	public boolean siiloTäyttyy(int siilo) {
 	}
 	// Palauttaa onko siilo varattu
-	public boolean siiloVarattu() {
+	public boolean siiloVarattu(int siilo) {
 		
 	}
 	// Palauttaa siilon tämänhetkisen täyttöasteen
-	public int siilonTäyttöaste() {
+	public int siilonTäyttöaste(int siilo) {
 		
 	}
 	// Palauttaa täyttääkö kuljetin keitintä
-	public boolean keitinTäytyy() {
+	public boolean keitinTäytyy(int keitin) {
 		
 	}
 	// Palauttaa onko keitin varattu
-	public boolean keitinVarattu() {
+	public boolean keitinVarattu(int keitin) {
 		
 	}
 	// Palauttaa prosessoiko keitin juomaa tällä hetkellä
-	public boolean keitinProsessoi() {
+	public boolean keitinProsessoi(int keitin) {
 		
 	}
 	// Palauttaa täyttyykö säiliö tällä hetkellä
-	public boolean säiliöTäyttyy() {
+	public boolean säiliöTäyttyy(int säiliö) {
 		
 	}
 	// Palauttaa onko säiliö varattu
-	public boolean säiliöVarattu() {
+	public boolean säiliöVarattu(int säiliö) {
 		
 	}
 	// Palautaa säiliön tämänhetkisen täyttöasteen
-	public int säiliönTäyttöaste() {
+	public int säiliönTäyttöaste(int säiliö) {
 		
 	}
 	// Palauttaa pullotuspumpun käyttöstatuksen
