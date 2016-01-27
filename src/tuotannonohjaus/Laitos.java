@@ -45,6 +45,49 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 			}
 		}
 	}
+	// Palauttaa asiakkaalle laitoksen statuksen
+	public Laitos update() {
+		return this;
+	}
+	// Palauttaa täyttääkö kuljetin siiloa tällä hetkellä
+	public boolean siiloTäyttyy() {
+	}
+	// Palauttaa onko siilo varattu
+	public boolean siiloVarattu() {
+		
+	}
+	// Palauttaa siilon tämänhetkisen täyttöasteen
+	public int siilonTäyttöaste() {
+		
+	}
+	// Palauttaa täyttääkö kuljetin keitintä
+	public boolean keitinTäytyy() {
+		
+	}
+	// Palauttaa onko keitin varattu
+	public boolean keitinVarattu() {
+		
+	}
+	// Palauttaa prosessoiko keitin juomaa tällä hetkellä
+	public boolean keitinProsessoi() {
+		
+	}
+	// Palauttaa täyttyykö säiliö tällä hetkellä
+	public boolean säiliöTäyttyy() {
+		
+	}
+	// Palauttaa onko säiliö varattu
+	public boolean säiliöVarattu() {
+		
+	}
+	// Palautaa säiliön tämänhetkisen täyttöasteen
+	public int säiliönTäyttöaste() {
+		
+	}
+	// Palauttaa pullotuspumpun käyttöstatuksen
+	public boolean pullotusKäynnissä() {
+		
+	}
 	// Käynnistää juomakeittimen
 	public void juomakeitinKäynnistys(int i){
 		juomakeitinArray[i].käynnistys();
@@ -53,7 +96,6 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	public void startKeittimienTäytin(int kuljetin){
 		System.out.println("Juomakeittimet täyttävä kuljetin "+kuljetin+" käynnistetty.");
 	}
-	// Varaa sillon
 	public void varaaSiilo(int siilo){
 		System.out.println("Siilo "+siilo+" varattu");
 	}
@@ -63,13 +105,13 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	public void käynnistäKeitin(int keitin) {
 		
 	}
-	public void käynnistäPumppu(int keitin) {
+	public void käynnistäPumppu(int pumppu) {
 		
 	}
-	public void käynnistäPullotusPumppu(int keitin) {
+	public void käynnistäPullotusPumppu(int pumppu) {
 		
 	}
-	public void varaaSäiliö(int keitin) {
+	public void varaaSäiliö(int säiliö) {
 		
 	}
 }

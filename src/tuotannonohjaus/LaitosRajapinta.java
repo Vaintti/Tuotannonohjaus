@@ -14,4 +14,15 @@ public interface LaitosRajapinta extends Remote {
 	public void varaaSäiliö(int keitin) throws RemoteException;
 	public String[] login(String nimi) throws RemoteException;
 	public void logout(String[] id) throws RemoteException;
+	public Laitos update() throws RemoteException;
+	public boolean siiloTäyttyy() throws RemoteException;
+	public boolean siiloVarattu() throws RemoteException;
+	public int siilonTäyttöaste() throws RemoteException;
+	public boolean keitinTäytyy() throws RemoteException;
+	public boolean keitinVarattu() throws RemoteException;
+	public boolean keitinProsessoi() throws RemoteException;
+	public boolean säiliöTäyttyy() throws RemoteException;
+	public boolean säiliöVarattu() throws RemoteException;
+	public int säiliönTäyttöaste() throws RemoteException;
+	public boolean pullotusKäynnissä() throws RemoteException;
 }
