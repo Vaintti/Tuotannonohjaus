@@ -25,15 +25,20 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		pumppuArray1=p;
 		kypsytyssäiliöA =ks;
 		pumppuArray2=pl;
+		identifiers = new ArrayList<String[]>();
 	}
 	// Testimetodi
 	public void testi(){
 		System.out.println("Onnistunut etäkutsu");
 	}
 	public String[] login(String nimi) {
+		System.out.println(this);
 		String[] identifier = new String[2];
+		System.out.println(identifier[0]+identifier[1]);
 		identifier[0] = nimi;
-		identifier[1] = UUID.randomUUID().toString(); 
+		System.out.println(identifier[0]+identifier[1]);
+		identifier[1] = UUID.randomUUID().toString();
+		System.out.println(identifier[0]+identifier[1]);
 		this.identifiers.add(identifier);
 		return identifier;
 	}
@@ -45,6 +50,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 			}
 		}
 	}
+<<<<<<< Updated upstream
 	// Palauttaa asiakkaalle laitoksen statuksen
 	public Laitos update() {
 		return this;
@@ -87,6 +93,11 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	// Palauttaa pullotuspumpun käyttöstatuksen
 	public boolean pullotusKäynnissä() {
 		
+=======
+	// Käynnistää juomakeittimen
+	public void juomakeitinKäynnistys(int i){
+		juomakeitinArray[i].käynnistys();
+>>>>>>> Stashed changes
 	}
 	// Käynnistää keittimet täyttävän ruuvikuljettimen
 	public void startKeittimienTäytin(int kuljetin, int määrä, String[] käyttäjä){
@@ -165,5 +176,80 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}
 	public void varaaSäiliö(int säiliö) {
 		
+	}
+	@Override
+	public void käynnistäKeitin(int keitin, String[] käyttäjä) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void käynnistäPumppu(int pumppu, String[] käyttäjä) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void käynnistäPullotusPumppu(int pumppu, String[] käyttäjä) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void varaaSäiliö(int säiliö, String[] käyttäjä) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public boolean siiloTäyttyy() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean siiloVarattu() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public int siilonTäyttöaste() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public boolean keitinTäytyy() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean keitinVarattu() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean keitinProsessoi() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean säiliöTäyttyy() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean säiliöVarattu() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public int säiliönTäyttöaste() throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public boolean pullotusKäynnissä() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public Laitos update() throws RemoteException {
+		// TODO Auto-generated method stub
+		return this;
 	}
 }

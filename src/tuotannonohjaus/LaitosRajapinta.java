@@ -6,12 +6,12 @@ public interface LaitosRajapinta extends Remote {
 	public void testi() throws RemoteException;
 	public void juomakeitinK‰ynnistys(int i) throws RemoteException;
 	public void startKeittimienT‰ytin(int kuljetin, int m‰‰r‰, String[] k‰ytt‰j‰) throws RemoteException;
-	public void varaaSiilo(int siilo) throws RemoteException;
-	public void varaaKeitin(int keitin) throws RemoteException;
-	public void k‰ynnist‰Keitin(int keitin) throws RemoteException;
-	public void k‰ynnist‰Pumppu(int keitin) throws RemoteException;
-	public void k‰ynnist‰PullotusPumppu(int keitin) throws RemoteException;
-	public void varaaS‰iliˆ(int keitin) throws RemoteException;
+	public void varaaSiilo(int siilo, String[] k‰ytt‰j‰) throws RemoteException;
+	public void varaaKeitin(int keitin, String[] k‰ytt‰j‰) throws RemoteException;
+	public void k‰ynnist‰Keitin(int keitin, String[] k‰ytt‰j‰) throws RemoteException;
+	public void k‰ynnist‰Pumppu(int pumppu, String[] k‰ytt‰j‰) throws RemoteException;
+	public void k‰ynnist‰PullotusPumppu(int pumppu, String[] k‰ytt‰j‰) throws RemoteException;
+	public void varaaS‰iliˆ(int s‰iliˆ, String[] k‰ytt‰j‰) throws RemoteException;
 	public String[] login(String nimi) throws RemoteException;
 	public void logout(String[] id) throws RemoteException;
 	public Laitos update() throws RemoteException;
