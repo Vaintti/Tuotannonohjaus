@@ -93,12 +93,8 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	// Palauttaa pullotuspumpun k‰yttˆstatuksen
 	public boolean pullotusK‰ynniss‰() {
 		
-=======
-	// K‰ynnist‰‰ juomakeittimen
-	public void juomakeitinK‰ynnistys(int i){
-		juomakeitinArray[i].k‰ynnistys();
->>>>>>> Stashed changes
 	}
+		
 	// K‰ynnist‰‰ keittimet t‰ytt‰v‰n ruuvikuljettimen
 	public void startKeittimienT‰ytin(int kuljetin, int m‰‰r‰, String[] k‰ytt‰j‰){
 		ArrayList<Siilo> siilot = new ArrayList<Siilo>();
@@ -150,26 +146,28 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		}
 	}
 	//Keitin k‰ynnistys
-	public void k‰ynnist‰Keitin(int keitin, String[] v) {
-		if(juomakeitinArray[keitin].getVaraaja() == v){
-			if(juomakeitinArray[keitin].getProsessoi() == false ){
-				if(juomakeitinArray[keitin].getRaaka() == juomakeitinArray[keitin].getRaakaMax()){
-					juomakeitinArray[keitin].k‰ynnistys();
+	public void k‰ynnist‰Keitin(int keitin, String[] v) throws RemoteException {
+		try{
+			if(juomakeitinArray[keitin].getVaraaja() == v){
+				if(juomakeitinArray[keitin].getProsessoi() == false ){
+					if(juomakeitinArray[keitin].getRaaka() == juomakeitinArray[keitin].getRaakaMax()){
+						juomakeitinArray[keitin].k‰ynnistys();
+					}else{
+						System.out.println("Keittin "+keitin+ " ei ole t‰ysi, ei voi k‰ynnist‰‰!");
+						return;
+					}	
 				}else{
-					System.out.println("Keittin "+keitin+ " ei ole t‰ysi, ei voi k‰ynnist‰‰!");
+					System.out.println("Keittin "+keitin+" prosessoi jo, ei voi k‰ynnist‰‰!");
 					return;
 				}
 			}else{
-				System.out.println("Keittin "+keitin+" prosessoi jo, ei voi k‰ynnist‰‰!");
+				System.out.println("Keittimen "+keitin+" varaaja ei ole "+v+", ei voi k‰ynnist‰‰!");
 				return;
 			}
-		}else{
-		System.out.println("Keittimen "+keitin+" varaaja ei ole "+v+", ei voi k‰ynnist‰‰!");
+		}catch(Exception e){
+        	System.out.println(e);
 			return;
 		}
-	}
-	public void k‰ynnist‰Pumppu(int pumppu,String[] v) {
-		
 	}
 	public void k‰ynnist‰PullotusPumppu(int pumppu) {
 		
@@ -178,13 +176,8 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		
 	}
 	@Override
-	public void k‰ynnist‰Keitin(int keitin, String[] k‰ytt‰j‰) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
 	public void k‰ynnist‰Pumppu(int pumppu, String[] k‰ytt‰j‰) throws RemoteException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	@Override
