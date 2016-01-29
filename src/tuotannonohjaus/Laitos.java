@@ -49,55 +49,10 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 				break;
 			}
 		}
-	}
-<<<<<<< Updated upstream
-	// Palauttaa asiakkaalle laitoksen statuksen
-	public Laitos update() {
-		return this;
-	}
-	// Palauttaa t‰ytt‰‰kˆ kuljetin siiloa t‰ll‰ hetkell‰
-	public boolean siiloT‰yttyy(int siilo) {
-	}
-	// Palauttaa onko siilo varattu
-	public boolean siiloVarattu(int siilo) {
-		
-	}
-	// Palauttaa siilon t‰m‰nhetkisen t‰yttˆasteen
-	public int siilonT‰yttˆaste(int siilo) {
-		
-	}
-	// Palauttaa t‰ytt‰‰kˆ kuljetin keitint‰
-	public boolean keitinT‰ytyy(int keitin) {
-		
-	}
-	// Palauttaa onko keitin varattu
-	public boolean keitinVarattu(int keitin) {
-		
-	}
-	// Palauttaa prosessoiko keitin juomaa t‰ll‰ hetkell‰
-	public boolean keitinProsessoi(int keitin) {
-		
-	}
-	// Palauttaa t‰yttyykˆ s‰iliˆ t‰ll‰ hetkell‰
-	public boolean s‰iliˆT‰yttyy(int s‰iliˆ) {
-		
-	}
-	// Palauttaa onko s‰iliˆ varattu
-	public boolean s‰iliˆVarattu(int s‰iliˆ) {
-		
-	}
-	// Palautaa s‰iliˆn t‰m‰nhetkisen t‰yttˆasteen
-	public int s‰iliˆnT‰yttˆaste(int s‰iliˆ) {
-		
-	}
-	// Palauttaa pullotuspumpun k‰yttˆstatuksen
-	public boolean pullotusK‰ynniss‰() {
-		
-=======
+	}	
 	// K‰ynnist‰‰ juomakeittimen
 	public void juomakeitinK‰ynnistys(int i){
 		juomakeitinArray[i].k‰ynnistys();
->>>>>>> Stashed changes
 	}
 	// K‰ynnist‰‰ keittimet t‰ytt‰v‰n ruuvikuljettimen
 	public void startKeittimienT‰ytin(int kuljetin, int m‰‰r‰, String[] k‰ytt‰j‰){
@@ -168,25 +123,6 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 			return;
 		}
 	}
-	public void k‰ynnist‰Pumppu(int pumppu,String[] v) {
-		
-	}
-	public void k‰ynnist‰PullotusPumppu(int pumppu) {
-		
-	}
-	public void varaaS‰iliˆ(int s‰iliˆ) {
-		
-	}
-	@Override
-	public void k‰ynnist‰Keitin(int keitin, String[] k‰ytt‰j‰) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void k‰ynnist‰Pumppu(int pumppu, String[] k‰ytt‰j‰) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
 	@Override
 	public void k‰ynnist‰PullotusPumppu(int pumppu, String[] k‰ytt‰j‰) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -251,5 +187,10 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	public Laitos update() throws RemoteException {
 		// TODO Auto-generated method stub
 		return this;
+	}
+	@Override
+	public void k‰ynnist‰Pumppu(int pumppu, String[] k‰ytt‰j‰) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 }
