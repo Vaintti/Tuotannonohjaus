@@ -160,14 +160,17 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		return false;
 	}
 	@Override
-	public boolean siiloVarattu() throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean siiloVarattu(int siilo) throws RemoteException {
+		if(siiloArray[siilo].getKäytössä()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	@Override
-	public int siilonTäyttöaste() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int siilonTäyttöaste(int siilo) throws RemoteException {
+		return siiloArray[siilo].getTäyttö();
 	}
 	@Override
 	public boolean keitinTäytyy() throws RemoteException {
@@ -175,29 +178,44 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		return false;
 	}
 	@Override
-	public boolean keitinVarattu() throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean keitinVarattu(int keitin) throws RemoteException {
+		if(juomakeitinArray[keitin].getVaraaja() == null){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 	@Override
-	public boolean keitinProsessoi() throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean keitinProsessoi(int keitin) throws RemoteException {
+		if(juomakeitinArray[keitin].getProsessoi()){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	@Override
-	public boolean säiliöTäyttyy() throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean säiliöTäyttyy(int säiliö) throws RemoteException {
+		if(kypsytyssäiliöA[säiliö].isKäytössä()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}	
+	@Override
+	public boolean säiliöVarattu(int säiliö) throws RemoteException {
+		if(kypsytyssäiliöA[säiliö].getKäyttäjä() == null){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 	@Override
-	public boolean säiliöVarattu() throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public int säiliönTäyttöaste() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int säiliönTäyttöaste(int säiliö) throws RemoteException {
+		return kypsytyssäiliöA[säiliö].getTäyttöaste();
 	}
 	@Override
 	public boolean pullotusKäynnissä() throws RemoteException {
