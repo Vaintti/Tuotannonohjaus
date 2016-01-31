@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Ruuvikuljetin {
 	// Onko kuljetin siilojen täyttöön
 	private boolean siilojenTäyttö = false;
-	private String[] käyttäjä;
 	private boolean käytössä;
 	
 	public Ruuvikuljetin(boolean siilojen) {
@@ -14,9 +13,9 @@ public class Ruuvikuljetin {
 	
 	public void siirrä(ArrayList<Siilo> s, int määrä, ArrayList<Juomakeitin> j) {
 		// Siirtoprosessi
-		System.out.println("Ruuvisiirron pitäisi alkaa. Siilojen täyttö on ");
+		System.out.println("Ruuvisiirron pitäisi alkaa.");
+		this.käytössä = true;
 		if(siilojenTäyttö) {
-			this.käytössä = true;
 			(new Thread(new Ruuvisiirto(this, s))).start();
 		}
 		else {

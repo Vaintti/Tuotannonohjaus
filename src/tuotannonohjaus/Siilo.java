@@ -1,7 +1,6 @@
 package tuotannonohjaus;
 
 public class Siilo {
-	
 	private String raakaaine;
 	private final int TÄYTTÖKATTO;
 	private int täyttöaste;

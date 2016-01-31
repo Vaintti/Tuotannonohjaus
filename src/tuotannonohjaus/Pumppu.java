@@ -3,9 +3,6 @@ package tuotannonohjaus;
 import java.util.*;
 
 public class Pumppu {
-	// Siirtonopeus litraa sekunnissa
-	private ArrayList<Kypsytyssäiliö> säiliöt;
-	private ArrayList<Juomakeitin> keittimet;
 	private String[] käyttäjä;
 	private boolean pumppaa;
 
