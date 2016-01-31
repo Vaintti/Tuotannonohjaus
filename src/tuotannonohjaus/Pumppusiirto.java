@@ -29,6 +29,7 @@ public class Pumppusiirto implements Runnable {
 						else{
 							ke.setValmistuotette(ke.getValmistuotetta()-(s.getTilavuus()-s.getTäyttöaste()));
 							s.setTäyttöaste(s.getTilavuus());
+							break;
 						}
 					}
 					else if(ke.getValmistuotetta() > 0) {
@@ -39,6 +40,7 @@ public class Pumppusiirto implements Runnable {
 						else{
 							ke.setValmistuotette(ke.getValmistuotetta()-(s.getTilavuus()-s.getTäyttöaste()));
 							s.setTäyttöaste(s.getTilavuus());
+							break;
 						}
 					}
 					else{

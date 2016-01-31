@@ -256,4 +256,8 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	public int keittimenTäyttöaste(int keitin) throws RemoteException {
 		return juomakeitinArray[keitin].getRaaka();
 	}
+	@Override
+	public String[] keittimenKäyttäjä(int keitin) throws RemoteException {
+		return juomakeitinArray[keitin].getVaraaja();
+	}
 }
