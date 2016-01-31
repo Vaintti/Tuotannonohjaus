@@ -3,7 +3,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface LaitosRajapinta extends Remote {
-	public void testi() throws RemoteException;
 	public void juomakeitinK‰ynnistys(int i, String[] k‰yttt‰j‰) throws RemoteException;
 	public void startKeittimienT‰ytin(int kuljetin, int m‰‰r‰, String[] k‰ytt‰j‰) throws RemoteException;
 	public void startSiilojenT‰ytin(String[] k‰ytt‰j‰) throws RemoteException;

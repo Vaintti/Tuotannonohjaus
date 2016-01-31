@@ -4,6 +4,7 @@ public class Juomakeitin {
 
 	private String[] varaaja;
 	private int tilavuusRaakaaine;
+	private int valmistuotetta;
 	private final int RAAKAMAX;
 	private boolean raakakäyttö;
 	private boolean prosessoi;
@@ -15,6 +16,7 @@ public class Juomakeitin {
 		varaaja = null;
 		prosessoi = false;
 		valmis = false;
+		valmistuotetta = 0;
 	}
 	//varaajan asetus, kysely ja reset
 	public void setVaraaja(String[] v){
@@ -64,8 +66,12 @@ public class Juomakeitin {
 	public void lopetus(){
 		prosessoi = false;
 		valmis = true;
+		valmistuotetta = 10000;
 	}
-
-
-
+	public int getValmistuotetta() {
+		return this.valmistuotetta;
+	}
+	public void setValmistuotette(int i) {
+		this.valmistuotetta = i;
+	}
 }

@@ -27,21 +27,16 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		pumppuArray2=pl;
 		identifiers = new ArrayList<String[]>();
 	}
-	// Testimetodi
-	public void testi(){
-		System.out.println("Onnistunut etäkutsu");
-	}
+	// Kirjaa käyttäjän sisään
 	public String[] login(String nimi) {
-		System.out.println(this);
 		String[] identifier = new String[2];
-		System.out.println(identifier[0]+identifier[1]);
 		identifier[0] = nimi;
-		System.out.println(identifier[0]+identifier[1]);
 		identifier[1] = UUID.randomUUID().toString();
 		System.out.println(identifier[0]+identifier[1]);
 		this.identifiers.add(identifier);
 		return identifier;
 	}
+	// Kirjaa käyttäjän ulos
 	public void logout(String[] identifier){
 		for(String[] id : identifiers) {
 			if(id[0] == identifier[0] && id[1] == identifier[1]) {
@@ -137,23 +132,41 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}
 	@Override
 	public void käynnistäPumppu(int pumppu, String[] käyttäjä) throws RemoteException {
-
-
+		if(pumppuArray1[pumppu].getKäyttäjä() != null) {
+			ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
+			for(Kypsytyssäiliö k : kypsytyssäiliöA){
+				if(k.getKäyttäjä() != null && !k.isKäytössä()) {
+					säiliöt.add(k);
+				}
+			}
+			ArrayList<Juomakeitin> keittimet = new ArrayList<Juomakeitin>();
+			for(Juomakeitin k : juomakeitinArray){
+				if(k.getVaraaja() != null && !k.getProsessoi()) {
+					keittimet.add(k);
+				}
+			}
+			pumppuArray1[pumppu].start(keittimet, säiliöt);
+		}
 	}
 	@Override
 	public void käynnistäPullotusPumppu(int pumppu, String[] käyttäjä) throws RemoteException {
-		if(käyttäjä == pumppuArray2[pumppu].getKäyttäjä()) {
-			pumppuArray2[pumppu].start();
+		if(pumppuArray2[pumppu].getKäyttäjä() != null) {
+			ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
+			for(Kypsytyssäiliö k : kypsytyssäiliöA){
+				if(k.getKäyttäjä() != null && !k.isKäytössä()) {
+					säiliöt.add(k);
+				}
+			}
+			pumppuArray2[pumppu].start(säiliöt);
 		}
 	}
 	@Override
 	public void varaaSäiliö(int säiliö, String[] käyttäjä) throws RemoteException {
-		// TODO Auto-generated method stub
-
+		kypsytyssäiliöA[säiliö].setKäyttäjä(käyttäjä);
 	}
 	@Override
 	public boolean siiloVarattu(int siilo) throws RemoteException {
-		if(siiloArray[siilo].getKäytössä()){
+		if(siiloArray[siilo].getKäyttäjä() != null){
 			return true;
 		}
 		else{

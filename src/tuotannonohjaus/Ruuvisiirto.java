@@ -49,13 +49,10 @@ public class Ruuvisiirto implements Runnable {
 		// Jos siirretään siiloista juomakeittimiin
 		else {
 			int siirretty = 0;
-			System.out.println(siilot);
-			System.out.println(juomakeittimet);
 			for(Siilo x : siilot) {
 				while(x.getTäyttö()>0 && siirretty < määrä) {
 					for(Juomakeitin y : juomakeittimet) {
 						try {Thread.sleep(100);}catch(Exception e) {System.out.println(e);}
-						System.out.println("Siilo: "+x.getTäyttö()+" Juomakeitin: "+y.getRaaka());
 						if(x.getTäyttö() >= SIIRTONOPEUS/10 && y.getRaaka()+SIIRTONOPEUS/10 <= y.getRaakaMax()) {
 							x.setTäyttö(x.getTäyttö()-SIIRTONOPEUS/10);
 							y.setRaaka(y.getRaaka()+SIIRTONOPEUS/10);

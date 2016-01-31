@@ -5,7 +5,7 @@ public class Kypsytyssäiliö {
 	private String juoma;
 	private final int tilavuus = 10000;
 	private boolean käytössä;
-	private String käyttäjä;
+	private String[] käyttäjä;
 	private int täyttöaste;
 	
 public String getJuoma() {
@@ -30,10 +30,10 @@ public String getJuoma() {
 	public void setKäytössä(boolean käytössä) {
 		this.käytössä = käytössä;
 	}
-	public String getKäyttäjä() {
+	public String[] getKäyttäjä() {
 		return käyttäjä;
 	}
-	public void setKäyttäjä(String käyttäjä) {
+	public void setKäyttäjä(String[] käyttäjä) {
 		this.käyttäjä = käyttäjä;
 	}
 	public int getTäyttöaste() {

@@ -4,25 +4,29 @@ import java.util.*;
 
 public class Pumppu {
 	// Siirtonopeus litraa sekunnissa
-	private final int SIIRTONOPEUS = 500;
-	private boolean pullotukseen;
+	private ArrayList<Kypsytyssäiliö> säiliöt;
+	private ArrayList<Juomakeitin> keittimet;
 	private String[] käyttäjä;
-	
+	private boolean pumppaa;
+
 	public Pumppu(boolean p) {
-		pullotukseen = p;
+		pumppaa = false;
 	}
-	public void pullotaKaikki(ArrayList<Kypsytyssäiliö> k) {
-		for(Kypsytyssäiliö s : k) {
-			while(s.getTäyttöaste() >= SIIRTONOPEUS/10) {
-				s.setTäyttöaste(s.getTäyttöaste()-SIIRTONOPEUS/10);
-			}
-			
-		}
+	
+	public void start(ArrayList<Kypsytyssäiliö> k) {
+		pumppaa = true;
+	}
+	public void start(ArrayList<Juomakeitin> j, ArrayList<Kypsytyssäiliö> k) {
+		pumppaa = true;
+		(new Thread(new Pumppusiirto(this, k, j))).start();
 	}
 	public String[] getKäyttäjä() {
 		return this.käyttäjä;
 	}
-	public void start() {
-		
+	public void lopetaPumppaaminen() {
+		this.pumppaa = false;
+	}
+	public boolean pumppaako() {
+		return this.pumppaa;
 	}
 }
