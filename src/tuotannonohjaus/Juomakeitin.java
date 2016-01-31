@@ -11,7 +11,7 @@ public class Juomakeitin {
 	
 	public Juomakeitin(){
 		tilavuusRaakaaine = 0;
-		RAAKAMAX = 10000;
+		RAAKAMAX = 2000;
 		varaaja = null;
 		prosessoi = false;
 		valmis = false;
@@ -59,7 +59,7 @@ public class Juomakeitin {
 	//k‰ynnistet‰‰n uusi s‰ie prosessoinnin laskemiseksi (kesto 20 sec)
 	public void k‰ynnistys(){
 		prosessoi = true;
-		new Thread(new Prosessointiaika(this));
+		(new Thread(new Prosessointiaika(this))).start();;
 	}
 	public void lopetus(){
 		prosessoi = false;

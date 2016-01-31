@@ -10,14 +10,12 @@ public class Prosessointiaika implements Runnable {
 	
 	public void run(){
 		try {
+			System.out.println("Prosessointi alkaa");
 		    Thread.sleep(AIKA);
-		    j.lopetus();
+		    System.out.println("Prosessoinnin pit√§isi loppua");
+		    this.j.lopetus();
 		} catch(InterruptedException ex) {
 		    Thread.currentThread().interrupt();
 		}
-		
 	}
-
-	//run metodi katso mallia summaajasta(sivu26) ja hajoyhteydest‰ (rivi 102)
-	//dalay 20000 millisekuntia.
 }

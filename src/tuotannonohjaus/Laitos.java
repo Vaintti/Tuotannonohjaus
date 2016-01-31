@@ -52,7 +52,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}	
 	// Käynnistää juomakeittimen
 	public void juomakeitinKäynnistys(int i, String[] ktj){
-		if(ktj == juomakeitinArray[i].getVaraaja()){
+		if(ktj != null){
 			juomakeitinArray[i].käynnistys();
 		}
 	}
@@ -66,12 +66,12 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		ArrayList<Siilo> siilot = new ArrayList<Siilo>();
 		ArrayList<Juomakeitin> juomakeittimet = new ArrayList<Juomakeitin>();
 		for(Siilo s : siiloArray){
-			if(s.getKäyttäjä()==käyttäjä) {
+			if(s.getKäyttäjä() != null) {
 				siilot.add(s);
 			}
 		}
 		for(Juomakeitin j : juomakeitinArray) {
-			if(j.getVaraaja()==käyttäjä) {
+			if(j.getVaraaja() != null) {
 				juomakeittimet.add(j);
 			}
 		}
@@ -101,20 +101,20 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 			return;
 		}else{
 			if(juomakeitinArray[keitin].getVaraaja() == null){
+				juomakeitinArray[keitin].setVaraaja(v);
+			}else{
 				if(juomakeitinArray[keitin].getVaraaja() == v){
 					juomakeitinArray[keitin].resetVaraaja();
 				}else{
 					return;
 				}
-			}else{
-				juomakeitinArray[keitin].setVaraaja(v);
 			}
 		}
 	}
 	//Keitin käynnistys
 	public void käynnistäKeitin(int keitin, String[] v) throws RemoteException {
 		try{
-			if(juomakeitinArray[keitin].getVaraaja() == v){
+			if(juomakeitinArray[keitin].getVaraaja() != null){
 				if(juomakeitinArray[keitin].getProsessoi() == false ){
 					if(juomakeitinArray[keitin].getRaaka() == juomakeitinArray[keitin].getRaakaMax()){
 						juomakeitinArray[keitin].käynnistys();
@@ -205,11 +205,6 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		return kypsytyssäiliöA[säiliö].getTäyttöaste();
 	}
 	@Override
-	public boolean pullotusKäynnissä() throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
 	public boolean siiloTavaraSiirtyy(int siilo) throws RemoteException {
 		// TODO Auto-generated method stub
 		return false;
@@ -240,5 +235,24 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	public boolean keittimenKäyttäjäKäynnissä(int i) throws RemoteException {
 		return ruuviArray[i].getKäytössä();
 	}
-
+	@Override
+	public boolean pumppuKäytössä(int pumppu) throws RemoteException {
+		if(pumppuArray1[pumppu].getKäyttäjä() == null) {
+			return false;
+		}else{
+			return true;
+		}
+	}
+	@Override
+	public boolean pullotusPumppuKäytössä(int pumppu) throws RemoteException {
+		if(pumppuArray2[pumppu].getKäyttäjä() == null) {
+			return false;
+		}else{
+			return true;
+		}
+	}
+	@Override
+	public int keittimenTäyttöaste(int keitin) throws RemoteException {
+		return juomakeitinArray[keitin].getRaaka();
+	}
 }

@@ -25,7 +25,9 @@ public interface LaitosRajapinta extends Remote {
 	public boolean säiliöTavaraSiirtyy(int säiliö) throws RemoteException;
 	public boolean säiliöVarattu(int säiliö) throws RemoteException;
 	public int säiliönTäyttöaste(int säiliö) throws RemoteException;
-	public boolean pullotusKäynnissä() throws RemoteException;
 	public boolean siilonTäyttäjäKäynnissä() throws RemoteException;
 	public boolean keittimenKäyttäjäKäynnissä(int i) throws RemoteException;
+	public boolean pumppuKäytössä(int pumppu) throws RemoteException;
+	public boolean pullotusPumppuKäytössä(int pumppu) throws RemoteException;
+	public int keittimenTäyttöaste(int keitin) throws RemoteException;
 }
