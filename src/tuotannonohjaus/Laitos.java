@@ -15,8 +15,8 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	private Kypsytyssäiliö[] kypsytyssäiliöA;
 	private Pumppu [] pumppuArray2;
 	private ArrayList<String[]> identifiers;
-	
-	
+
+
 	public Laitos(Ruuvikuljetin a, Siilo[] siilot, Ruuvikuljetin[] b, Juomakeitin[] j, Pumppu[] p, Kypsytyssäiliö[] ks, Pumppu[] pl) throws RemoteException {
 		ruuvi=a ;
 		siiloArray=siilot;
@@ -51,14 +51,16 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		}
 	}	
 	// Käynnistää juomakeittimen
-	public void juomakeitinKäynnistys(int i){
-		juomakeitinArray[i].käynnistys();
+	public void juomakeitinKäynnistys(int i, String[] ktj){
+		if(ktj == juomakeitinArray[i].getVaraaja()){
+			juomakeitinArray[i].käynnistys();
+		}
 	}
 	// Palauttaa asiakkaalle laitoksen statuksen
 	public Laitos update() {
 		return this;
 	}
-		
+
 	// Käynnistää keittimet täyttävän ruuvikuljettimen
 	public void startKeittimienTäytin(int kuljetin, int määrä, String[] käyttäjä){
 		ArrayList<Siilo> siilot = new ArrayList<Siilo>();
@@ -78,17 +80,17 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	// Varaa siilo
 	public void varaaSiilo(int siilo, String[] v){
 		System.out.println("Siilo "+siilo+" varattu");
-		if(siiloArray[siilo].getKäytössä() == true){
+		if(siiloArray[siilo].getKäytössä()){
 			return;
 		}else{
 			if(siiloArray[siilo].getKäyttäjä() == null){
+				siiloArray[siilo].setKäyttäjä(v);
+			}else{
 				if(siiloArray[siilo].getKäyttäjä() == v){
 					siiloArray[siilo].poistaKäyttäjä();
 				}else{
 					return;
 				}
-			}else{
-				siiloArray[siilo].setKäyttäjä(v);
 			}
 		}
 	}
@@ -129,35 +131,25 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 				return;
 			}
 		}catch(Exception e){
-        	System.out.println(e);
+			System.out.println(e);
 			return;
 		}
 	}
-	public void käynnistäPullotusPumppu(int pumppu) {
-		
-	}
-	public void varaaSäiliö(int säiliö) {
-		
-	}
 	@Override
 	public void käynnistäPumppu(int pumppu, String[] käyttäjä) throws RemoteException {
-		
-		
+
+
 	}
 	@Override
 	public void käynnistäPullotusPumppu(int pumppu, String[] käyttäjä) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		if(käyttäjä == pumppuArray2[pumppu].getKäyttäjä()) {
+			pumppuArray2[pumppu].start();
+		}
 	}
 	@Override
 	public void varaaSäiliö(int säiliö, String[] käyttäjä) throws RemoteException {
 		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public boolean siiloTäyttyy() throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+
 	}
 	@Override
 	public boolean siiloVarattu(int siilo) throws RemoteException {
@@ -171,11 +163,6 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	@Override
 	public int siilonTäyttöaste(int siilo) throws RemoteException {
 		return siiloArray[siilo].getTäyttö();
-	}
-	@Override
-	public boolean keitinTäytyy() throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	@Override
 	public boolean keitinVarattu(int keitin) throws RemoteException {
@@ -196,7 +183,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		}
 	}
 	@Override
-	public boolean säiliöTäyttyy(int säiliö) throws RemoteException {
+	public boolean säiliöTavaraSiirtyy(int säiliö) throws RemoteException {
 		if(kypsytyssäiliöA[säiliö].isKäytössä()){
 			return true;
 		}
@@ -222,4 +209,36 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	@Override
+	public boolean siiloTavaraSiirtyy(int siilo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean keitinTavaraSiirtyy(int keitin) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean siilonTäyttäjäKäynnissä() throws RemoteException {
+		return ruuvi.getKäytössä();
+	}
+	@Override
+	public void startSiilojenTäytin(String[] käyttäjä) throws RemoteException {
+		System.out.println("Siilojentäytin start");
+		ArrayList<Siilo> ks = new ArrayList<Siilo>();
+		int max = 0;
+		for(Siilo s : siiloArray){
+			if(s.getKäyttäjä() != null) {
+				ks.add(s);
+				max += s.getTäyttökatto()-s.getTäyttö();
+			}
+		}
+		ruuvi.siirrä(ks, max, null);
+	}
+	@Override
+	public boolean keittimenKäyttäjäKäynnissä(int i) throws RemoteException {
+		return ruuviArray[i].getKäytössä();
+	}
+
 }
