@@ -32,14 +32,14 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		String[] identifier = new String[2];
 		identifier[0] = nimi;
 		identifier[1] = UUID.randomUUID().toString();
-		System.out.println(identifier[0]+identifier[1]);
+		System.out.println("Nimi: "+identifier[0]+" ID:"+identifier[1]);
 		this.identifiers.add(identifier);
 		return identifier;
 	}
 	// Kirjaa k‰ytt‰j‰n ulos
 	public void logout(String[] identifier){
 		for(String[] id : identifiers) {
-			if(id[0] == identifier[0] && id[1] == identifier[1]) {
+			if(id[0].equals(identifier[0]) && id[1].equals(identifier[1])) {
 				identifiers.remove(id);
 				break;
 			}
@@ -47,7 +47,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}	
 	// K‰ynnist‰‰ juomakeittimen
 	public void juomakeitinK‰ynnistys(int i, String[] ktj){
-		if(ktj != null){
+		if(ktj[0].equals(juomakeitinArray[i].getVaraaja()[0]) && ktj[1].equals(juomakeitinArray[i].getVaraaja()[1])){
 			juomakeitinArray[i].k‰ynnistys();
 		}
 	}
@@ -81,7 +81,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 			if(siiloArray[siilo].getK‰ytt‰j‰() == null){
 				siiloArray[siilo].setK‰ytt‰j‰(v);
 			}else{
-				if(siiloArray[siilo].getK‰ytt‰j‰() == v){
+				if(siiloArray[siilo].getK‰ytt‰j‰()[0].equals(v[0]) && siiloArray[siilo].getK‰ytt‰j‰()[1].equals(v[1])){
 					siiloArray[siilo].poistaK‰ytt‰j‰();
 				}else{
 					return;

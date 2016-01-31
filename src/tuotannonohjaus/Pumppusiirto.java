@@ -7,17 +7,18 @@ public class Pumppusiirto implements Runnable {
 	ArrayList<Juomakeitin> j;
 	Pumppu pumppu;
 	final int SIIRTONOPEUS = 500;
-	
+
 	public Pumppusiirto(Pumppu p, ArrayList<Kypsytyssäiliö> a, ArrayList<Juomakeitin> b) {
 		this.k = a;
 		this.j = b;
 		this.pumppu = p;
 	}
-	
+
 	public void run() {
 		System.out.println("Keittimet: "+j+" Säiliöt: "+k);
-		for(Juomakeitin ke : j) {
-			for(Kypsytyssäiliö s: k) {
+		for(Kypsytyssäiliö s: k) {
+			for(Juomakeitin ke : j) {
+
 				while(true) {
 					try{Thread.sleep(100);}catch(Exception e){System.out.println(e);};
 					if(ke.getValmistuotetta() >= SIIRTONOPEUS/10){
