@@ -64,9 +64,10 @@ public class Juomakeitin {
 		(new Thread(new Prosessointiaika(this))).start();;
 	}
 	public void lopetus(){
-		prosessoi = false;
-		valmis = true;
-		valmistuotetta = 10000;
+		this.prosessoi = false;
+		this.valmis = true;
+		this.valmistuotetta = 10000;
+		this.tilavuusRaakaaine = 0;
 	}
 	public int getValmistuotetta() {
 		return this.valmistuotetta;
