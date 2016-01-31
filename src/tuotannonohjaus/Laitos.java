@@ -84,6 +84,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		}else{
 			if(siiloArray[siilo].getKäyttäjä()[0].equals(v[0]) && siiloArray[siilo].getKäyttäjä()[1].equals(v[1])){
 				siiloArray[siilo].poistaKäyttäjä();
+				System.out.println("Poistetaan siilon varaus ");
 			}else{
 				return;
 			}
@@ -156,7 +157,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		if(!pumppuArray2[pumppu].pumppaako()){
 			ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
 			for(Kypsytyssäiliö k : kypsytyssäiliöA){
-				if(k.getKäyttäjä() != null && !k.isKäytössä()) {
+				if(k.getKäyttäjä() != null && k.getKäyttäjä()[0].equals(käyttäjä[0]) && k.getKäyttäjä()[1].equals(käyttäjä[1])) {
 					säiliöt.add(k);
 				}
 			}

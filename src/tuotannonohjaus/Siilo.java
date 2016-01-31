@@ -27,9 +27,7 @@ public class Siilo {
 	}
 	//käyttäjän asetus, kysely ja poisto
 	public void setKäyttäjä(String[] k){
-		if(käyttäjä==null){
-			käyttäjä=k;
-		}
+		this.käyttäjä = k;
 	}
 	public String[] getKäyttäjä(){
 		return käyttäjä;
