@@ -9,6 +9,8 @@ public class Juomakeitin {
 	private boolean raakakäyttö;
 	private boolean prosessoi;
 	private boolean valmis;
+	private boolean täyttyy;
+	private boolean tyhjenee;
 	
 	public Juomakeitin(){
 		tilavuusRaakaaine = 0;
@@ -74,5 +76,17 @@ public class Juomakeitin {
 	}
 	public void setValmistuotette(int i) {
 		this.valmistuotetta = i;
+	}
+	public boolean getTäyttyy() {
+		return täyttyy;
+	}
+	public void setTäyttyy(boolean täyttyy) {
+		this.täyttyy = täyttyy;
+	}
+	public boolean getTyhjenee() {
+		return tyhjenee;
+	}
+	public void setTyhjenee(boolean tyhjenee) {
+		this.tyhjenee = tyhjenee;
 	}
 }

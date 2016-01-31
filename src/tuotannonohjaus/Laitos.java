@@ -46,7 +46,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}	
 	// K‰ynnist‰‰ juomakeittimen
 	public void juomakeitinK‰ynnistys(int i, String[] ktj){
-		if(ktj[0].equals(juomakeitinArray[i].getVaraaja()[0]) && ktj[1].equals(juomakeitinArray[i].getVaraaja()[1])){
+		if(ktj[0].equals(juomakeitinArray[i].getVaraaja()[0]) && ktj[1].equals(juomakeitinArray[i].getVaraaja()[1]) && !juomakeitinArray[i].getT‰yttyy() && !juomakeitinArray[i].getTyhjenee()){
 			juomakeitinArray[i].k‰ynnistys();
 		}
 	}
@@ -259,5 +259,14 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	@Override
 	public String[] keittimenK‰ytt‰j‰(int keitin) throws RemoteException {
 		return juomakeitinArray[keitin].getVaraaja();
+	}
+	@Override
+	public boolean keitinT‰ytyy(int keitin) throws RemoteException {
+		return juomakeitinArray[keitin].getT‰yttyy();
+	}
+	@Override
+	public boolean keitinValmis(int keitin) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -28,4 +28,6 @@ public interface LaitosRajapinta extends Remote {
 	public boolean pullotusPumppuKäytössä(int pumppu) throws RemoteException;
 	public int keittimenTäyttöaste(int keitin) throws RemoteException;
 	public String[] keittimenKäyttäjä(int keitin) throws RemoteException;
+	public boolean keitinTäytyy(int keitin) throws RemoteException;
+	public boolean keitinValmis(int keitin) throws RemoteException;
 }
