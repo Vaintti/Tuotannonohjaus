@@ -15,9 +15,11 @@ public class Pumppusiirto implements Runnable {
 	}
 	
 	public void run() {
+		System.out.println("Keittimet: "+j+" Säiliöt: "+k);
 		for(Juomakeitin ke : j) {
 			for(Kypsytyssäiliö s: k) {
 				while(true) {
+					try{Thread.sleep(100);}catch(Exception e){System.out.println(e);};
 					if(ke.getValmistuotetta() >= SIIRTONOPEUS/10){
 						if(s.getTäyttöaste() <= s.getTilavuus()-SIIRTONOPEUS/10) {
 							ke.setValmistuotette(ke.getValmistuotetta()-SIIRTONOPEUS/10);
@@ -38,7 +40,9 @@ public class Pumppusiirto implements Runnable {
 							s.setTäyttöaste(s.getTilavuus());
 						}
 					}
-					break;
+					else{
+						break;
+					}
 				}
 			}
 		}

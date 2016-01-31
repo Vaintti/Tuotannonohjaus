@@ -132,33 +132,29 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}
 	@Override
 	public void käynnistäPumppu(int pumppu, String[] käyttäjä) throws RemoteException {
-		if(pumppuArray1[pumppu].getKäyttäjä() != null) {
-			ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
-			for(Kypsytyssäiliö k : kypsytyssäiliöA){
-				if(k.getKäyttäjä() != null && !k.isKäytössä()) {
-					säiliöt.add(k);
-				}
+		ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
+		for(Kypsytyssäiliö k : kypsytyssäiliöA){
+			if(k.getKäyttäjä() != null && !k.isKäytössä()) {
+				säiliöt.add(k);
 			}
-			ArrayList<Juomakeitin> keittimet = new ArrayList<Juomakeitin>();
-			for(Juomakeitin k : juomakeitinArray){
-				if(k.getVaraaja() != null && !k.getProsessoi()) {
-					keittimet.add(k);
-				}
-			}
-			pumppuArray1[pumppu].start(keittimet, säiliöt);
 		}
+		ArrayList<Juomakeitin> keittimet = new ArrayList<Juomakeitin>();
+		for(Juomakeitin k : juomakeitinArray){
+			if(k.getVaraaja() != null && !k.getProsessoi()) {
+				keittimet.add(k);
+			}
+		}
+		pumppuArray1[pumppu].start(keittimet, säiliöt);
 	}
 	@Override
 	public void käynnistäPullotusPumppu(int pumppu, String[] käyttäjä) throws RemoteException {
-		if(pumppuArray2[pumppu].getKäyttäjä() != null) {
-			ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
-			for(Kypsytyssäiliö k : kypsytyssäiliöA){
-				if(k.getKäyttäjä() != null && !k.isKäytössä()) {
-					säiliöt.add(k);
-				}
+		ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
+		for(Kypsytyssäiliö k : kypsytyssäiliöA){
+			if(k.getKäyttäjä() != null && !k.isKäytössä()) {
+				säiliöt.add(k);
 			}
-			pumppuArray2[pumppu].start(säiliöt);
 		}
+		pumppuArray2[pumppu].start(säiliöt);
 	}
 	@Override
 	public void varaaSäiliö(int säiliö, String[] käyttäjä) throws RemoteException {
@@ -250,19 +246,11 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}
 	@Override
 	public boolean pumppuKäytössä(int pumppu) throws RemoteException {
-		if(pumppuArray1[pumppu].getKäyttäjä() == null) {
-			return false;
-		}else{
-			return true;
-		}
+		return pumppuArray1[pumppu].pumppaako();
 	}
 	@Override
 	public boolean pullotusPumppuKäytössä(int pumppu) throws RemoteException {
-		if(pumppuArray2[pumppu].getKäyttäjä() == null) {
-			return false;
-		}else{
-			return true;
-		}
+		return pumppuArray2[pumppu].pumppaako();
 	}
 	@Override
 	public int keittimenTäyttöaste(int keitin) throws RemoteException {

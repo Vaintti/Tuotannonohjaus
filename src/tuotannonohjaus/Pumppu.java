@@ -17,6 +17,7 @@ public class Pumppu {
 		pumppaa = true;
 	}
 	public void start(ArrayList<Juomakeitin> j, ArrayList<Kypsytyssäiliö> k) {
+		System.out.println("Siirron pitäisi alkaa");
 		pumppaa = true;
 		(new Thread(new Pumppusiirto(this, k, j))).start();
 	}
