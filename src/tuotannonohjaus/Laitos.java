@@ -57,18 +57,27 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 
 	// Käynnistää keittimet täyttävän ruuvikuljettimen
 	public void startKeittimienTäytin(int kuljetin, int määrä, String[] käyttäjä){
-		if(!ruuviArray[kuljetin].getKäytössä()){
+		if(ruuviArray[kuljetin].getKäytössä() == false){
 			ArrayList<Siilo> siilot = new ArrayList<Siilo>();
 			ArrayList<Juomakeitin> juomakeittimet = new ArrayList<Juomakeitin>();
 			for(Siilo s : siiloArray){
+				if(s.getKäyttäjä() != null){
 				System.out.println("Siilon käyttäjä on "+s.getKäyttäjä());
-				if(s.getKäyttäjä() != null && s.getKäyttäjä()[0].equals(käyttäjä[0]) && s.getKäyttäjä()[1].equals(käyttäjä[1])) {
+				}
+				if(s.getKäyttäjä() != null && s.getKäyttäjä()[0].equals(käyttäjä[0]) && s.getKäyttäjä()[1].equals(käyttäjä[1]) && s.getKäytössä()==false) {
 					siilot.add(s);
+				}else if(s.getKäyttäjä() != null && s.getKäytössä()== true){
+					System.out.println("-Siilo "+s+" on käytössä, siirtoa ei voi aloittaa");
+					
 				}
 			}
 			for(Juomakeitin j : juomakeitinArray) {
-				if(j.getVaraaja() != null && j.getVaraaja()[0].equals(käyttäjä[0]) && j.getVaraaja()[1].equals(käyttäjä[1])) {
+				if(j.getVaraaja() != null && j.getVaraaja()[0].equals(käyttäjä[0]) && j.getVaraaja()[1].equals(käyttäjä[1]) && j.getTäyttyy() == false && j.getTyhjenee() == false) {
 					juomakeittimet.add(j);
+				}else if(j.getVaraaja() != null && j.getTäyttyy() == true){
+					System.out.println("-Keitin "+j+" täyttyy, siirtoa ei voi aloittaa");
+				}else if(j.getVaraaja() != null && j.getTyhjenee() == true){
+					System.out.println("-Keitin "+j+" tyhjenee, siirtoa ei voi aloittaa");
 				}
 			}
 			ruuviArray[kuljetin].siirrä(siilot, määrä, juomakeittimet);
@@ -76,15 +85,13 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}
 	// Varaa siilo
 	public void varaaSiilo(int siilo, String[] v){
-		System.out.println("Siilo "+siilo+" varattu");
-
 		if(siiloArray[siilo].getKäyttäjä() == null){
-			System.out.println("Varataan siilo henkilölle "+v);
+			System.out.println("Siilo "+siilo+" varattu käyttäjälle "+v[0]);
 			siiloArray[siilo].setKäyttäjä(v);
 		}else{
 			if(siiloArray[siilo].getKäyttäjä()[0].equals(v[0]) && siiloArray[siilo].getKäyttäjä()[1].equals(v[1])){
 				siiloArray[siilo].poistaKäyttäjä();
-				System.out.println("Poistetaan siilon varaus ");
+				System.out.println("Poistetaan siilon "+siilo+" varaus ");
 			}else{
 				return;
 			}
@@ -94,7 +101,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	// Varaa keitin
 	public void varaaKeitin(int keitin, String[] v) {
 		if(juomakeitinArray[keitin].getProsessoi() == true){
-			System.out.println("Keitin "+keitin+" prosessoi. Ei voida varata.");
+			System.out.println("-Keitin "+keitin+" prosessoi. Ei voida varata.");
 			return;
 		}else{
 			if(juomakeitinArray[keitin].getVaraaja() == null){
@@ -118,15 +125,15 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 					if(juomakeitinArray[keitin].getRaaka() == juomakeitinArray[keitin].getRaakaMax()){
 						juomakeitinArray[keitin].käynnistys();
 					}else{
-						System.out.println("Keittin "+keitin+ " ei ole täysi, ei voi käynnistää!");
+						System.out.println("-Keittin "+keitin+ " ei ole täysi, ei voi käynnistää!");
 						return;
 					}	
 				}else{
-					System.out.println("Keittin "+keitin+" prosessoi jo, ei voi käynnistää!");
+					System.out.println("-Keittin "+keitin+" prosessoi jo, ei voi käynnistää!");
 					return;
 				}
 			}else{
-				System.out.println("Keittimen "+keitin+" varaaja ei ole "+v+", ei voi käynnistää!");
+				System.out.println("-Keittimen "+keitin+" varaaja ei ole "+v+", ei voi käynnistää!");
 				return;
 			}
 		}catch(Exception e){
@@ -139,14 +146,22 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		if(!pumppuArray1[pumppu].pumppaako()){
 			ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
 			for(Kypsytyssäiliö k : kypsytyssäiliöA){
-				if(k.getKäyttäjä() != null && k.getKäyttäjä()[0].equals(käyttäjä[0]) && k.getKäyttäjä()[1].equals(käyttäjä[1])) {
+				if(k.getKäyttäjä() != null && k.getKäyttäjä()[0].equals(käyttäjä[0]) && k.getKäyttäjä()[1].equals(käyttäjä[1]) && k.getKäytössä()==false ) {
 					säiliöt.add(k);
+				}else if(k.getKäyttäjä() != null && k.getKäytössä()==true){
+					System.out.println("-Säiliö "+k+" on käytössä, ei voida täyttää");
 				}
 			}
 			ArrayList<Juomakeitin> keittimet = new ArrayList<Juomakeitin>();
 			for(Juomakeitin k : juomakeitinArray){
-				if(k.getVaraaja() != null && k.getVaraaja()[0].equals(käyttäjä[0]) && k.getVaraaja()[1].equals(käyttäjä[1])) {
+				if(k.getVaraaja() != null && k.getVaraaja()[0].equals(käyttäjä[0]) && k.getVaraaja()[1].equals(käyttäjä[1]) && k.getTäyttyy() == false && k.getTyhjenee() == false && k.getValmis() == true) {
 					keittimet.add(k);
+				}else if(k.getVaraaja() != null && k.getTäyttyy() == true){
+					System.out.println("-Keitin "+k+" täyttyy, tyhjennystä ei voi aloittaa");
+				}else if(k.getVaraaja() != null && k.getTyhjenee() == true){
+					System.out.println("-Keitin "+k+" tyhjenee jo, tyhjennystä ei voi aloittaa");
+				}else if(k.getVaraaja() != null && k.getValmis() == false){
+					System.out.println("-Keitin "+k+" ei ole prosessoinut, tyhjennystä ei voi aloittaa");
 				}
 			}
 			pumppuArray1[pumppu].start(keittimet, säiliöt);
@@ -157,16 +172,30 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 		if(!pumppuArray2[pumppu].pumppaako()){
 			ArrayList<Kypsytyssäiliö> säiliöt = new ArrayList<Kypsytyssäiliö>();
 			for(Kypsytyssäiliö k : kypsytyssäiliöA){
-				if(k.getKäyttäjä() != null && k.getKäyttäjä()[0].equals(käyttäjä[0]) && k.getKäyttäjä()[1].equals(käyttäjä[1])) {
+				if(k.getKäyttäjä() != null && k.getKäyttäjä()[0].equals(käyttäjä[0]) && k.getKäyttäjä()[1].equals(käyttäjä[1]) && k.getKäytössä()==false) {
 					säiliöt.add(k);
+				}else if(k.getKäyttäjä() != null && k.getKäytössä()==true){
+					System.out.println("-Säiliö "+k+" on käytössä, ei voida tyhjentää");
 				}
 			}
 			pumppuArray2[pumppu].start(säiliöt);
 		}
 	}
 	@Override
-	public void varaaSäiliö(int säiliö, String[] käyttäjä) throws RemoteException {
-		kypsytyssäiliöA[säiliö].setKäyttäjä(käyttäjä);
+	public void varaaSäiliö(int säiliö, String[] v) throws RemoteException {
+
+		if(kypsytyssäiliöA[säiliö].getKäyttäjä() == null){
+			System.out.println("Säiliö "+säiliö+" varattu käyttäjälle "+v[0]);
+			kypsytyssäiliöA[säiliö].setKäyttäjä(v);
+		}else{
+			if(kypsytyssäiliöA[säiliö].getKäyttäjä()[0].equals(v[0]) && kypsytyssäiliöA[säiliö].getKäyttäjä()[1].equals(v[1])){
+				kypsytyssäiliöA[säiliö].setKäyttäjä(null);
+				System.out.println("Poistetaan säiliön "+säiliö+" varaus ");
+			}else{
+				return;
+			}
+		}
+
 	}
 	@Override
 	public boolean siiloVarattu(int siilo) throws RemoteException {
@@ -228,13 +257,19 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	@Override
 	public void startSiilojenTäytin(String[] käyttäjä) throws RemoteException {
 		if(!ruuvi.getKäytössä()){
+			
+			
 			System.out.println("Siilojentäytin start");
 			ArrayList<Siilo> ks = new ArrayList<Siilo>();
 			int max = 0;
 			for(Siilo s : siiloArray){
-				if(s.getKäyttäjä() != null) {
+				if(s.getKäyttäjä() != null && s.getKäyttäjä()[0].equals(käyttäjä[0]) && s.getKäyttäjä()[1].equals(käyttäjä[1]) && s.getKäytössä()==false) {
 					ks.add(s);
 					max += s.getTäyttökatto()-s.getTäyttö();
+				}else if(s.getKäyttäjä() != null && s.getKäytössä()== true){
+					System.out.println("-Siilo "+s+" on käytössä, siirtoa ei voi aloittaa");
+					
+					
 				}
 			}
 			ruuvi.siirrä(ks, max, null);
@@ -266,7 +301,14 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 	}
 	@Override
 	public boolean keitinValmis(int keitin) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+		return juomakeitinArray[keitin].getValmis();
+	}
+	@Override
+	public boolean keitinTäysi(int keitin) throws RemoteException {
+		return juomakeitinArray[keitin].getTäysi();
+	}
+	@Override
+	public boolean keitinTyhjenee(int keitin) throws RemoteException {
+		return juomakeitinArray[keitin].getTyhjenee();
 	}
 }

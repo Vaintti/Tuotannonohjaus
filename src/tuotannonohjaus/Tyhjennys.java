@@ -18,11 +18,16 @@ public class Tyhjennys implements Runnable {
 				try{Thread.sleep(100);}catch(Exception e){System.out.println(e);}
 				if(s.getTäyttöaste() >= SIIRTONOPEUS/10) {
 					s.setTäyttöaste(s.getTäyttöaste()-SIIRTONOPEUS/10);
+					s.setKäytössä(true);
 				}
 				else if(s.getTäyttöaste() > 0) {
 					s.setTäyttöaste(0);
+					s.setKäytössä(false);
+					s.setKäyttäjä(null);
 				}
 				else{
+					s.setKäytössä(false);
+					s.setKäyttäjä(null);
 					break;
 				}
 			}

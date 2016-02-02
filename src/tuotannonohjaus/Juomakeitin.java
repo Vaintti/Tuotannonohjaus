@@ -89,4 +89,11 @@ public class Juomakeitin {
 	public void setTyhjenee(boolean tyhjenee) {
 		this.tyhjenee = tyhjenee;
 	}
+	public boolean getTäysi(){
+		if(RAAKAMAX == tilavuusRaakaaine){
+			return true;
+		}else{
+			return false;
+		}	
+	}
 }

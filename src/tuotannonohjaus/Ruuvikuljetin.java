@@ -16,9 +16,11 @@ public class Ruuvikuljetin {
 		System.out.println("Ruuvisiirron pitäisi alkaa.");
 		this.käytössä = true;
 		if(siilojenTäyttö) {
+			System.out.println("Siilon täyttö valittu");
 			(new Thread(new Ruuvisiirto(this, s))).start();
 		}
 		else {
+			System.out.println("Keittimen täyttö valittu");
 			(new Thread(new Ruuvisiirto(this, määrä, s, j))).start();
 		}
 	}

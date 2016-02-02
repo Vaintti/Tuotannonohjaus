@@ -25,10 +25,18 @@ public class Pumppusiirto implements Runnable {
 						if(s.getTäyttöaste() <= s.getTilavuus()-SIIRTONOPEUS/10) {
 							ke.setValmistuotette(ke.getValmistuotetta()-SIIRTONOPEUS/10);
 							s.setTäyttöaste(s.getTäyttöaste()+SIIRTONOPEUS/10);
+							ke.setTyhjenee(true);
+							ke.setValmis(false);
+							s.setKäytössä(true);
 						}
 						else{
 							ke.setValmistuotette(ke.getValmistuotetta()-(s.getTilavuus()-s.getTäyttöaste()));
 							s.setTäyttöaste(s.getTilavuus());
+							ke.setTyhjenee(false);
+							s.setKäytössä(false);
+							s.setKäytössä(false);
+							s.setKäyttäjä(null);
+							System.out.println("tankki täysi");
 							break;
 						}
 					}
@@ -36,14 +44,27 @@ public class Pumppusiirto implements Runnable {
 						if(s.getTilavuus()-s.getTäyttöaste() >= ke.getValmistuotetta()) {
 							s.setTäyttöaste(s.getTäyttöaste()+ke.getValmistuotetta());
 							ke.setValmistuotette(0);
+							ke.setTyhjenee(false);
+							s.setKäytössä(false);
+							s.setKäyttäjä(null);
+							ke.resetVaraaja();
+							System.out.println("tankki 3");
 						}
 						else{
 							ke.setValmistuotette(ke.getValmistuotetta()-(s.getTilavuus()-s.getTäyttöaste()));
 							s.setTäyttöaste(s.getTilavuus());
+							s.setKäytössä(false);
+							s.setKäyttäjä(null);
+							ke.resetVaraaja();
+							System.out.println("tankki 4");
 							break;
 						}
 					}
 					else{
+						ke.setTyhjenee(false);
+						s.setKäytössä(false);
+						s.setKäyttäjä(null);
+						ke.resetVaraaja();
 						break;
 					}
 				}

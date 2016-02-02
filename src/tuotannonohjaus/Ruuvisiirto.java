@@ -35,10 +35,16 @@ public class Ruuvisiirto implements Runnable {
 							if(s.getRaaka() <= s.getRaakaMax()-SIIRTONOPEUS/10) {
 								ke.setTäyttö(ke.getTäyttö()-SIIRTONOPEUS/10);
 								s.setRaaka(s.getRaaka()+SIIRTONOPEUS/10);
+								s.setTäyttyy(true);
+								ke.setKäytössä(true);
 							}
 							else{
 								ke.setTäyttö(ke.getTäyttö()-(s.getRaakaMax()-s.getRaaka()));
 								s.setRaaka(s.getRaakaMax());
+								s.setTäyttyy(false);
+								ke.setKäytössä(false);
+								ke.setKäyttäjä(null);
+								ke.setKäytössä(false);
 								break;
 							}
 						}
@@ -46,14 +52,29 @@ public class Ruuvisiirto implements Runnable {
 							if(s.getRaakaMax()-s.getRaaka() >= ke.getTäyttö()) {
 								s.setRaaka(s.getRaaka()+ke.getTäyttö());
 								ke.setTäyttö(0);;
+								s.setTäyttyy(false);
+								ke.setKäytössä(false);
+								ke.setKäyttäjä(null);
+								ke.setKäytössä(false);
+								System.out.println("Ruuvisiirto 3");
 							}
 							else{
 								ke.setTäyttö(ke.getTäyttö()-(s.getRaakaMax()-s.getRaaka()));
 								s.setRaaka(s.getRaakaMax());
+								s.setTäyttyy(false);
+								ke.setKäytössä(false);
+								ke.setKäyttäjä(null);
+								ke.setKäytössä(false);
+								System.out.println("Ruuvisiirto 4");
 								break;
 							}
 						}
 						else{
+							System.out.println("Ruuvisiirto 5");
+							ke.setKäytössä(false);
+							s.setTäyttyy(false);
+							ke.setKäyttäjä(null);
+							ke.setKäytössä(false);
 							break;
 						}
 					}
@@ -68,12 +89,18 @@ public class Ruuvisiirto implements Runnable {
 					try{Thread.sleep(100);}catch(Exception e){System.out.println(e);};
 					if(xi.getTäyttö() <= xi.getTäyttökatto()-SIIRTONOPEUS/10){
 						xi.setTäyttö(xi.getTäyttö()+SIIRTONOPEUS/10);
+						xi.setKäytössä(true);
 					}
 					else if(xi.getTäyttö() < xi.getTäyttökatto()) {
 						xi.setTäyttö(xi.getTäyttökatto());
+						xi.setKäytössä(false);
+						System.out.println("Ruuvisiirto xi 2");
 						break;
 					}
 					else{
+						xi.setKäytössä(false);
+						xi.setKäyttäjä(null);
+						xi.setKäytössä(false);
 						break;
 					}
 				}
