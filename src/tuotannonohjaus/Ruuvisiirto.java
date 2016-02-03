@@ -85,7 +85,14 @@ public class Ruuvisiirto implements Runnable {
 					}
 				}
 			}
-			
+			for(Juomakeitin s : juomakeittimet) {
+				for(Siilo ke : siilot) {
+					s.setTäyttyy(false);
+					ke.setKäytössä(false);
+					ke.setKäyttäjä(null);
+					ke.setKäytössä(false);
+				}
+			}
 			kuljetin.poistaKäytöstä();
 		}
 		else{
@@ -109,6 +116,11 @@ public class Ruuvisiirto implements Runnable {
 						break;
 					}
 				}
+			}
+			for(Siilo xi : siilot) {
+				xi.setKäytössä(false);
+				xi.setKäyttäjä(null);
+				xi.setKäytössä(false);
 			}
 			kuljetin.poistaKäytöstä();
 		}
