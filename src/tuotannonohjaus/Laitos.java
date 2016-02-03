@@ -72,7 +72,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 				}
 			}
 			for(Juomakeitin j : juomakeitinArray) {
-				if(j.getVaraaja() != null && j.getVaraaja()[0].equals(käyttäjä[0]) && j.getVaraaja()[1].equals(käyttäjä[1]) && j.getTäyttyy() == false && j.getTyhjenee() == false) {
+				if(j.getVaraaja() != null && j.getVaraaja()[0].equals(käyttäjä[0]) && j.getVaraaja()[1].equals(käyttäjä[1]) && j.getTäyttyy() == false && j.getTyhjenee() == false && j.getTäysi()==false && j.getValmis()==false && j.getProsessoi()==false) {
 					juomakeittimet.add(j);
 				}else if(j.getVaraaja() != null && j.getTäyttyy() == true){
 					System.out.println("-Keitin "+j+" täyttyy, siirtoa ei voi aloittaa");
@@ -108,7 +108,7 @@ public class Laitos extends UnicastRemoteObject implements LaitosRajapinta{
 				juomakeitinArray[keitin].setVaraaja(v);
 				System.out.println("Keitin "+keitin+" varattu. Varaaja on nyt "+v[0]);
 			}else{
-				if(juomakeitinArray[keitin].getVaraaja()[0].equals(v[0]) && juomakeitinArray[keitin].getVaraaja()[1].equals(v[1])){
+				if(juomakeitinArray[keitin].getVaraaja()[0].equals(v[0]) && juomakeitinArray[keitin].getVaraaja()[1].equals(v[1]) && juomakeitinArray[keitin].getTäyttyy() == false && juomakeitinArray[keitin].getTyhjenee() == false && juomakeitinArray[keitin].getValmis() == false && juomakeitinArray[keitin].getProsessoi()==false && juomakeitinArray[keitin].getTäysi()==false){
 					System.out.println("Keitin "+keitin+" poistettu varauksesta.");
 					juomakeitinArray[keitin].resetVaraaja();
 				}else{
