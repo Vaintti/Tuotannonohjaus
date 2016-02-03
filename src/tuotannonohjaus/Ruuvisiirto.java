@@ -24,21 +24,24 @@ public class Ruuvisiirto implements Runnable {
 	}
 
 	public void run() {
+		int siirretty = 0;
 		if(juomakeittimet != null) {
 			System.out.println("Siilot: "+siilot+" Keittimet: "+juomakeittimet);
 			for(Juomakeitin s: juomakeittimet) {
 				for(Siilo ke : siilot) {
 
-					while(true) {
+					while(siirretty < määrä) {
 						try{Thread.sleep(100);}catch(Exception e){System.out.println(e);};
 						if(ke.getTäyttö() >= SIIRTONOPEUS/10){
 							if(s.getRaaka() <= s.getRaakaMax()-SIIRTONOPEUS/10) {
+								siirretty += SIIRTONOPEUS/10;
 								ke.setTäyttö(ke.getTäyttö()-SIIRTONOPEUS/10);
 								s.setRaaka(s.getRaaka()+SIIRTONOPEUS/10);
 								s.setTäyttyy(true);
 								ke.setKäytössä(true);
 							}
 							else{
+								siirretty += (s.getRaakaMax()-s.getRaaka());
 								ke.setTäyttö(ke.getTäyttö()-(s.getRaakaMax()-s.getRaaka()));
 								s.setRaaka(s.getRaakaMax());
 								s.setTäyttyy(false);
@@ -50,6 +53,7 @@ public class Ruuvisiirto implements Runnable {
 						}
 						else if(ke.getTäyttö() > 0) {
 							if(s.getRaakaMax()-s.getRaaka() >= ke.getTäyttö()) {
+								siirretty +=ke.getTäyttö();
 								s.setRaaka(s.getRaaka()+ke.getTäyttö());
 								ke.setTäyttö(0);;
 								s.setTäyttyy(false);
@@ -59,6 +63,7 @@ public class Ruuvisiirto implements Runnable {
 								System.out.println("Ruuvisiirto 3");
 							}
 							else{
+								siirretty += (s.getRaakaMax()-s.getRaaka());
 								ke.setTäyttö(ke.getTäyttö()-(s.getRaakaMax()-s.getRaaka()));
 								s.setRaaka(s.getRaakaMax());
 								s.setTäyttyy(false);
